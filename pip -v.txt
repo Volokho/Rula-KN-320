@@ -1,0 +1,25 @@
+pip -V
+# Після успішного виконання команди виконайте
+pip --help
+pip install requests
+python #Зайдіть в пайтон інтерпретатор
+>>> import requests
+>>> r = requests.get('https://google.com')
+>>> r.status_code
+>>> exit()
+pip show requests
+pip install requests==2.1
+pip show requests
+pip uninstall requests
+python -m venv ./my_env
+source my_env/Scripts/activate
+pip install requests
+deactivate
+pip show requests
+pip install pipenv
+# Після успішного виконання команди виконайте
+pipenv --help
+pipenv --python 3.10
+pipenv --venv
+pipenv run python -V
+pipenv install requests
