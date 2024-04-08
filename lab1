@@ -1,1 +1,111 @@
+Звіт роботи
+Тема: Робота з тестами в Пайтон
+Мета роботи: Навчитися створювати тести та за допомогою них перевіряти правильність виконання програм
+Результати виконання завдань:
+1. Створили [Пайтон Ноутбук] (./nb,ipynb) де будемо працювати з базовими конструкціями для тестування;
+1. Почали використовувати твердження assert та продемонстрували як у нас виникає помилка при не виконання
+Почали використовувати бібліотеку coverage, потрібні команди записали у [Пайтон Ноутбук]
+(./nb,ipynb)
+Спробували використовувати фікстури та підвищили значення покриття коду.
+Навчився писати базові юнітести та проводитии тестування програм;
+number = -1
+assert number > 0, "число має бути більшим за нуль!"
+---------------------------------------------------------------------------
+AssertionError                            Traceback (most recent call last)
+Cell In[1], line 2
+      1 number = -1
+----> 2 assert number > 0, "число має бути більшим за нуль!"
 
+AssertionError: число має бути більшим за нуль!
+a = input("Введіть число: ")
+assert a.isdigit(), "Потрібно ввести число!"
+print(f"введене число: {a}")
+введене число: 65
+class Figure:
+    def __init__(self, type, length) -> None:
+        assert length > 0, "Довжина має бути більшою за 0!"
+        assert type in ["квадрат", "прямокутник", "трикутник"], "Дозволені фігури: квадрат, прямокутник, трикутник"
+        self.type = type
+        self.length = length
+
+#a = Figure("трапеція", 12)
+#b = Figure("квадрат", 0)
+c = Figure("квадрат", 1)
+class Name:
+    def __init__(self, name) -> None:
+        if name not in ["Руслан", "Анонім"]:
+            raise ValueError("Дозволені імена: Руслан, Анонім")
+        self.name = name
+
+a = Name("Руслан")
+class Figure:
+    FIGURES = ["квадрат", "прямокутник", "трикутник"]
+    def __init__(self, type, length) -> None:
+        assert length > 0, "Довжина має бути більшою за 0!"
+        assert type in self.FIGURES, "Дозволені фігури: квадрат, прямокутник, трикутник"
+        self.type = type
+        self.length = length
+
+    @property
+    def get_figure_type(self):
+        return self.type
+
+    @property
+    def get_figure_length(self):
+        return self.type # робимо помилку
+import unittest
+from random import choice, randint
+
+from app import Figure # назва файлу з нашим класом повинна бути app.py
+
+class TestFigure(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        """Виконається лише раз на початку тестів
+        """
+        pass
+    
+    def setUp(self) -> None:
+        """Виконується кожного разу коли запускається тест
+        """
+        self.figure = choice(Figure.FIGURES)
+        self.length = randint(1, 10)
+        self.obj = Figure(self.figure, self.length)
+        return super().setUp()
+
+    def tearDown(self) -> None:
+        del self.obj
+        return super().tearDown()
+
+    def test_figure_type(self):
+        print(f"Тестуємо вивід, має бути: {self.figure} == {self.obj.get_figure_type}")
+        self.assertEqual(self.figure, self.obj.get_figure_type, "Властивість get_figure_type повертає непривильну фігуру!")
+
+    def test_figure_lengh(self):
+        self.assertEqual(self.length, self.obj.get_figure_length, "Властивість get_figure_length повертає непривильну довжину!")
+    
+    def test_obj(self):
+        with self.assertRaises(AssertionError):
+            Figure("коло", 1) # Спробуємо створити обєкт з недозволеними параметрими, в нас має бути помилка AssertionError
+
+
+if __name__ == '__main__':
+    unittest.main() # unittest.main(verbosity=2) щоб був більш детальний вивід
+---------------------------------------------------------------------------
+ModuleNotFoundError                       Traceback (most recent call last)
+Cell In[10], line 4
+      1 import unittest
+      2 from random import choice, randint
+----> 4 from app import Figure # назва файлу з нашим класом повинна бути app.py
+      6 class TestFigure(unittest.TestCase):
+      7     @classmethod
+      8     def setUpClass(cls):
+
+ModuleNotFoundError: No module named 'app'
+def test_app_triangle():
+    """Test if we create triangle figure.
+    """
+    fig = "трикутник"
+    triangle = Figure(fig, 4)
+    assert triangle.type == fig, f"Фігура має бути {fig}"
+ 
