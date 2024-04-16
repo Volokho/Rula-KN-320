@@ -1,6 +1,33 @@
-### Завдання на екзамен
-### У роботі №3, для файлу swords_bonus.py написати тест до методу list_bonus_methods
-### Створюємо файл у папці лаб 3 де будемо писати тест,test_exam.py
-### пишемо код на виконання та представити результати 
-### результати запуску на скріншоті
+import unittest
+
+def list_bonus_methods(obj):
+    """
+    Returns a list of bonus methods of the given object.
+
+    Parameters:
+    obj (object): The object to inspect.
+
+    Returns:
+    list: A list of bonus methods.
+    """
+    # Here you implement the logic to identify and return bonus methods
+    pass
+
+class TestListBonusMethods(unittest.TestCase):
+
+    def test_list_bonus_methods_with_dict(self):
+        test_dict = {'a': 1, 'b': 2}
+        bonus_methods = list_bonus_methods(test_dict)
+        self.assertEqual(bonus_methods, [])
+
+    def test_list_bonus_methods_with_list(self):
+        test_list = [1, 2, 3]
+        bonus_methods = list_bonus_methods(test_list)
+        self.assertEqual(bonus_methods, [])
+
+    # Add more test cases as needed
+
+if __name__ == '__main__':
+    unittest.main()
+    
 
