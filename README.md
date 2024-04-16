@@ -3,4 +3,5 @@
 ### Створюємо файл у папці лаб 3 де будемо писати тест,test_exam.py
 ### пишемо код на виконання та представити результати 
 ### результати запуску на скріншоті
-![image](https://github.com/Volokho/Rula-KN-320/assets/128050341/f6cce0e2-c5b1-4b6c-915e-d43cffcd43d1)
+![image](https://github.com/Volokho/Rula-KN-320/assets/128050341/44f83e97-932a-4874-bb42-993a294b2172)
+
